@@ -1,40 +1,37 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import Book from './src/components/Book';
+import { colors, paddings } from './src/components/_base';
+import { createStackNavigator } from 'react-navigation';
+import HomeScreen from './src/components/screens/HomeScreen';
+import CategoriesScreen from './src/components/screens/CategoriesScreen';
+import CategoryScreen from './src/components/screens/CategoryScreen';
+import BookScreen from './src/components/screens/BookScreen';
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Book />
-      </View>
-    );
+export default createStackNavigator (
+  {
+    Home: {
+      screen: HomeScreen
+    },
+    Categories: {
+      screen: CategoriesScreen
+    },
+    Category: {
+      screen: CategoryScreen
+    },
+    Book: {
+      screen: BookScreen
+    }
+  },
+  {
+    initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.primary
+      },
+      headerTintColor: colors.normalText,
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      }
+    }
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+);

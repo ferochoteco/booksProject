@@ -1,25 +1,32 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Linking, Image, Alert } from 'react-native';
+import { colors, paddings, fonts } from './_base';
 
 const Book = (props) => {
+    const { image, author, description, url } = props;
     return (
         <View style={styles.bookContainer}>
             <View style={styles.bookHeaderContainer}>
                 <View style={styles.bookImage}>
-                    <Text>Image</Text>
+                    <Image 
+                        style={{width: 60, height: 90}} 
+                        source={{uri: image}}/>
                 </View>
                 <View style={styles.bookAuthor}>
-                    <Text>by <Text style={styles.bookAuthorText}>Author</Text></Text>
+                    <Text>by <Text style={styles.bookAuthorText}>{ author }</Text></Text>
                 </View>
             </View>
             <View style={styles.bookDescriptionContainer}>
-                <Text>Description</Text>
+                <Text>{ description }</Text>
             </View>
             <View style={styles.bookButtonsContainer}>
                 <Button 
                     title="check on Amazon" 
                     onPress={() => {
-                        alert("asd");
+                        Linking.openURL(url)
+                            .catch(err => {
+                                Alert.alert("oh snap!", "something went wrong");
+                            })
                     }} />
             </View>
         </View>
@@ -34,12 +41,12 @@ const styles = StyleSheet.create({
     bookHeaderContainer: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: 'yellow'
+        backgroundColor: colors.primary
     },
     bookDescriptionContainer: {
         flex: 3,
-        padding: 10,
-        backgroundColor: 'red'
+        padding: paddings.sm,
+        backgroundColor: colors.background
     },
     bookButtonsContainer: {
         height: 50,
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     bookAuthorText: {
-        fontSize: 20
+        fontSize: fonts.lg
     }
 });
 
