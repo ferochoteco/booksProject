@@ -10,7 +10,7 @@
     "prop-types": "^15.6.2",
     "react": "16.6.1",
     "react-native": "0.57.5",
-    "react-native-fcm": "^16.2.4",
+    "react-native-fcm": "^16.2.0",
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {

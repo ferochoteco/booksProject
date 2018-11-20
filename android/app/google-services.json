@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "360132389076",
+    "firebase_url": "https://react-native-18590.firebaseio.com",
+    "project_id": "react-native-18590",
+    "storage_bucket": "react-native-18590.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360132389076:android:aef0e43d8e1df87d",
+        "android_client_info": {
+          "package_name": "com.booksproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360132389076-gbp6o83ntge1k7118ku8bt110r54acp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAulixR1ri31uXozzR5jiifbvyYD7FSIxQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
