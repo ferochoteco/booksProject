@@ -86,7 +86,7 @@ Category.propTypes = {
     id: PropTypes.string.isRequired,
     limit: PropTypes.number,
     page: PropTypes.number,
-    disableInfiniteScroll: PropTypes.boolean,
+    disableInfiniteScroll: PropTypes.bool,
     onSelect: PropTypes.func
 }
 

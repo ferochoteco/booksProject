@@ -1,8 +1,12 @@
 export const colors = {
-    primary: '#28F1A6',
+    primary: '#27ae60',
     seconday: '#180A32',
     normalText: '#333333',
-    background: '#FFF'
+    background: '#FFF',
+    loginBkgBtn: '#27ae60',
+    loginBtn: '#FFF',
+    signUpBkgBtn: '#2980b9',
+    signUpBtn: '#FFF'
 }
 
 export const paddings = {

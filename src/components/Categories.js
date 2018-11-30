@@ -4,50 +4,23 @@ import { colors, paddings } from './_base';
 import PropTypes from 'prop-types';
 import Loading from './common/Loading';
 
+// Redux
+import { connect } from 'react-redux';
+import { fetchData } from '../actions/dataActions';
+
 class Categories extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            loading: false
-        }
-    }
 
     componentDidMount() {
-        this.getData();
-    }
-
-    getData() {
-        this.setState({
-            loading: true
-        },
-        () => {
-            fetch('http://acamicaexample.herokuapp.com/categories')
-                .then(response => response.json())
-                .then(data => {
-                    this.setState({
-                        data
-                    });
-                })
-                .catch(error => {
-                    Alert.alert('oh snap!', 'something went wrong');
-                })
-                .finally(() => {
-                    this.setState({
-                        loading: false
-                    })
-                })
-        });
+        this.props.fetchData();
     }
 
     render () {
-        const { data, loading } = this.state;
-        const { onSelect } = this.props;
+        const { onSelect, categories, loading } = this.props;
         return (
             <View>
                 <Loading isLoading={loading} />
                 <FlatList 
-                    data={data} 
+                    data={categories} 
                     keyExtractor={item => item.id} 
                     renderItem={({item}) => 
                         <TouchableHighlight
@@ -73,4 +46,17 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Categories;
+const mapStateToProps = (state) => {
+    return {
+        categories: state.appData.data,
+        loading: state.appData.isFetching
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: () => dispatch(fetchData())
+    }
+}
+  
+export default connect(mapStateToProps,mapDispatchToProps)(Categories);

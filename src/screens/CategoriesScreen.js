@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View} from 'react-native';
-import { colors, paddings } from '../_base'
-import Categories from '../Categories';
+import { colors, paddings } from '../components/_base'
+import Categories from '../components/Categories';
 
 export default class CategoriesScreen extends Component {
     static navigationOptions = {

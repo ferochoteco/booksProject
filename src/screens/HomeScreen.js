@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button } from 'react-native';
-import Category from '../Category';
-import { colors, paddings } from '../_base';
+import Category from '../components/Category';
+import { colors, paddings } from '../components/_base';
 
 export default class HomeScreen extends Component {
+    
     static navigationOptions = {
-        title: 'RN Books'
-    }      
+        header: null
+    };
+     
     render() {
         const { navigation } = this.props
         return (

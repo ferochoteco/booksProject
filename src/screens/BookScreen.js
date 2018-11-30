@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Alert} from 'react-native';
-import { colors, paddings } from '../_base'
-import Book from '../Book';
-import Loading from '../common/Loading';
+import { colors, paddings } from '../components/_base'
+import Book from '../components/Book';
+import Loading from '../components/common/Loading';
 
 export default class BookScreen extends Component {
     static navigationOptions = {
