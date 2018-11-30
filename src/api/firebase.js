@@ -15,6 +15,11 @@ export const createUser = (email, password) => {
   return fbConnection.auth().createUserWithEmailAndPassword(email, password);
 }
 
+<<<<<<< HEAD
 export const loginUser = (email, password) => {
   return fbConnection.auth().signInWithEmailAndPassword(email, password);
+=======
+export const loginUser = async (email, password) => {
+  return await fbConnection.auth().signInWithEmailAndPassword(email, password);
+>>>>>>> Add redux, redux thunk & login
 }
