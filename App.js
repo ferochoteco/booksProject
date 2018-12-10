@@ -25,7 +25,7 @@ export default createStackNavigator (
     }
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
         backgroundColor: colors.primary

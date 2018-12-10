@@ -6,7 +6,7 @@ import Loading from './common/Loading';
 
 // Redux
 import { connect } from 'react-redux';
-import { fetchData } from '../actions/dataActions';
+import { fetchCategories } from '../actions/dataActions';
 
 class Categories extends Component {
 
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: () => dispatch(fetchData())
+        fetchData: () => dispatch(fetchCategories())
     }
 }
   

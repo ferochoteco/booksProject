@@ -48,7 +48,6 @@ export function login(email, password, screenName, nav) {
             })
             .catch((error) => {
                 dispatch(getLoginFailure(error));
-                console.error(error);
             });
     }
 }

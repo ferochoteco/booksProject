@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableHighlight, Alert } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableHighlight } from 'react-native';
 import { colors, paddings } from './_base';
 import Loading from './common/Loading';
 import PropTypes from 'prop-types';
+
+// Redux
+import { connect } from 'react-redux';
+import { fetchBooksByCategory } from '../actions/booksActions';
 
 class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            loading: false,
             page: props.page || 1,
             limit: props.limit || 15,
             noMore: props.disableInfiniteScroll || false
@@ -18,53 +20,28 @@ class Category extends Component {
     }
 
     componentDidMount() {
-        this.getData();
+        const { page, limit } = this.state;
+        const { id } = this.props;
+        this.props.fetchData(id, page, limit);
     }
 
     loadMore() {
-        const { page, loading, noMore } = this.state;
+        const { page, limit, loading, noMore } = this.state;
+        const { id } = this.props;
+        if (page === 3) return;
         if (loading || noMore) return;
         this.setState({
-            page: this.state.page + 1
-        }, () => {
-            this.getData();
-        })
-    }
-
-    getData() {
-        const { page, limit, noMore } = this.state;
-        const { id } = this.props;
-        this.setState({
-            loading: true
-        },
-        () => {
-            fetch(`http://acamicaexample.herokuapp.com/books?category_id=${id}&_page=${page}&_limit=${limit}`)
-                .then(response => response.json())
-                .then(data => {
-                    this.setState({
-                        data: [...this.state.data, ...data],
-                        noMore: noMore || data.length < limit
-                    });
-                })
-                .catch(error => {
-                    Alert.alert('oh snap!', 'something went wrong');
-                })
-                .finally(() => {
-                    this.setState({
-                        loading: false
-                    })
-                })
-        });
+            page: page + 1
+        }, this.props.fetchData(id, page, limit));
     }
 
     render () {
-        const { data, loading } = this.state;
-        const { onSelect } = this.props;
+        const { onSelect, books, loading } = this.props;
         return (
             <View>
                 <Loading isLoading={loading} />
                 <FlatList 
-                    data={data} 
+                    data={books} 
                     keyExtractor={item => item.id} 
                     renderItem={({item}) => 
                         <TouchableHighlight
@@ -75,7 +52,6 @@ class Category extends Component {
                         </TouchableHighlight>}
                     onEndReached={this.loadMore}
                     onEndReachedThreshold={0.01}
-                    ListFooterComponent={<Loading isLoading={loading} />}
                 />
             </View>
         )
@@ -97,4 +73,17 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Category;
+const mapStateToProps = (state) => {
+    return {
+        books: state.booksReducer.books,
+        loading: state.booksReducer.isFetching
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (id, page, limit) => dispatch(fetchBooksByCategory(id, page, limit))
+    }
+}
+  
+export default connect(mapStateToProps,mapDispatchToProps)(Category);

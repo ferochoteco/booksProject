@@ -13,7 +13,12 @@ const fetchData = (url) => {
         .catch(error => console.error(error)) 
 }
 
-export const getCategories = () => {
+export const fetchCategories = () => {
     const url = 'http://acamicaexample.herokuapp.com/categories'; 
+    return fetchData(url); 
+}
+
+export const fetchBooksByCategory = (id, page, limit) => {
+    const url = `http://acamicaexample.herokuapp.com/books?category_id=${id}&_page=${page}&_limit=${limit}`; 
     return fetchData(url); 
 }

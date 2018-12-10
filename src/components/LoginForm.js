@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TextInput, StatusBar } from 'react-native';
+import { View, StyleSheet, TextInput, StatusBar, Text } from 'react-native';
 import TextBtn from '../components/common/TextBtn';
 import Loading from '../components/common/Loading';
 import { colors } from '../components/_base.js';
@@ -17,7 +17,6 @@ class LoginForm extends Component {
             password: '',
             response: ''
         }
-<<<<<<< HEAD
         this.loginUser = this.loginUser.bind(this);
         this.signUpUser = this.signUpUser.bind(this);
     }
@@ -33,87 +32,22 @@ class LoginForm extends Component {
             return;
         }
         this.props.dispatchSignUp(this.state.email, this.state.password);
-=======
-        // this.signUp = this.signUp.bind(this);
-        this.loginUser = this.loginUser.bind(this);
-    }
-
-    /* async signUp() {
-        try {
-            if (this.state.password.length < 6) {
-                alert("Please enter at least 6 characters");
-                return;
-            }
-            await fbConnection.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-            this.setState({
-                response: 'Account created.'
-            });
-        }
-        catch(error) {
-            this.setState({
-                response: error.toString()
-            });
-        }
-    }
-
-    login2() {
-        const nav = this.props.navigation;
-        async () => {
-            try {
-                await fbConnection.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-                    .then(function () {
-                        nav.navigate('Home');
-                    })
-                    .finally(() => {
-                        this.setState({
-                            loading: false
-                        });
-                    });
-            }
-            catch(error) {
-                this.setState({
-                    response: error.toString(),
-                    loading: false
-                });
-                console.log(error.toString());
-            }
-        }
-    } */
-
-    loginUser() {
-        const nav = this.props.navigation;
-        this.props.login2(this.state.email, this.state.password, 'Home', nav);
-        /* this.props.login2(this.state.email, this.state.password);
-        const nav = this.props.navigation;
-        if (this.props.error) {
-            return console.log("error!");
-        }
-        if (this.props.finished) {
-            nav.navigate('Home');
-            console.log(this.props.userData);
-        } */
->>>>>>> Add redux, redux thunk & login
     }
 
     render() {
-        const { loading } = this.props;
+        const { loading, error } = this.props;
         return (
             <View style={styles.container}>
                 { loading ? <Loading isLoading={loading} /> : 
                     <View>
                         <StatusBar 
-<<<<<<< HEAD
                             barStyle="light-content"
                             />
-=======
-                        barStyle="light-content"
-                        />
->>>>>>> Add redux, redux thunk & login
                         <TextInput 
                             autoCapitalize="none"
                             autoCorrect={false}
                             keyboardType="email-address"
-                            placeholder="Username or email"
+                            placeholder="Email"
                             placeholderTextColor="rgba(255,255,255,0.7)"
                             onChangeText={(email) => this.setState({email})}
                             onSubmitEditing={() => this.passwordInput.focus()}
@@ -127,6 +61,7 @@ class LoginForm extends Component {
                             style={styles.input}
                             ref={(input) => this.passwordInput = input}
                             />
+                        { error && <Text style={styles.errorText}>{ error.message }</Text>}
                         <TextBtn 
                             bkgColor={colors.loginBkgBtn}
                             color={colors.loginBtn}
@@ -136,11 +71,7 @@ class LoginForm extends Component {
                         <TextBtn 
                             bkgColor={colors.signUpBkgBtn}
                             color={colors.signUpBtn}
-<<<<<<< HEAD
                             onPress={this.signUpUser}
-=======
-                            onPress={this.signUp}
->>>>>>> Add redux, redux thunk & login
                             text='SIGN UP'
                             />
                     </View>
@@ -160,6 +91,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         color: '#FFF',
         paddingHorizontal: 10
+    },
+    errorText: {
+        color: '#c0392b'
     }
 });
 
@@ -174,12 +108,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-<<<<<<< HEAD
         dispatchLogin: (email, password, scrName, nav) => dispatch(login(email, password, scrName, nav)),
         dispatchSignUp: (email, password) => dispatch(signUp(email, password))
-=======
-        login2: (email, password, scrName, nav) => dispatch(login(email, password, scrName, nav))
->>>>>>> Add redux, redux thunk & login
     }
 }
   

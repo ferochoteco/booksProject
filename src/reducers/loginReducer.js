@@ -7,7 +7,7 @@ const initialState = {
   error: false
 }
 
-export default function dataReducer (state = initialState, action) {
+const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_BEGIN:
       return {
@@ -34,3 +34,5 @@ export default function dataReducer (state = initialState, action) {
       return state
   }
 }
+
+export default loginReducer;

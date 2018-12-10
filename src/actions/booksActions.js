@@ -1,30 +1,30 @@
-import { FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAILURE } from '../utils/constants';
-import { getCategories } from '../utils/parser';
+import { FETCHING_BOOKS, FETCHING_BOOKS_SUCCESS, FETCHING_BOOKS_FAILURE } from '../utils/constants';
+import { getBooksByCategory } from '../utils/parser';
 
 export function getData() {
     return {
-        type: FETCHING_DATA
+        type: FETCHING_BOOKS
     }
 }
 
 export function getDataSuccess(data) {
     return {
-        type: FETCHING_DATA_SUCCESS,
+        type: FETCHING_BOOKS_SUCCESS,
         payload: { data }
     }
 }
 
 export function getDataFailure(error) {
     return {
-        type: FETCHING_DATA_FAILURE,
+        type: FETCHING_BOOKS_FAILURE,
         payload: { error } 
     }
 }
 
-export function fetchCategories() {
+export function fetchBooksByCategory(id, page, limit) {
     return (dispatch) => {
         dispatch(getData());
-        getCategories()
+        getBooksByCategory(id, page, limit)
             .then((data) => {
                 dispatch(getDataSuccess(data))
             })
