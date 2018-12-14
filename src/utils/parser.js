@@ -1,4 +1,4 @@
-import { fetchCategories, fetchBooksByCategory } from '../api/api';
+import { fetchCategories, fetchBooksByCategory, fetchPlayers } from '../api/api';
 
 export const getCategories = () =>  {
     return fetchCategories()
@@ -27,6 +27,20 @@ export const getBooksByCategory = (id, page, limit) =>  {
                         image,
                         description,
                         url
+                    }
+                })
+            })
+            .catch(error => console.log(error))
+}
+
+export const getPlayers = () =>  {
+    return fetchPlayers()
+            .then(response => {
+                return response.map((item) => {
+                    const { short_name, id } = item;
+                    return {
+                        name: short_name,
+                        id: `${id}`
                     }
                 })
             })

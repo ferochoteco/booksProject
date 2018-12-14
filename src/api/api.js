@@ -22,3 +22,8 @@ export const fetchBooksByCategory = (id, page, limit) => {
     const url = `http://acamicaexample.herokuapp.com/books?category_id=${id}&_page=${page}&_limit=${limit}`; 
     return fetchData(url); 
 }
+
+export const fetchPlayers = () => {
+    const url = 'http://192.168.1.109:3000/team3'; 
+    return fetchData(url); 
+}

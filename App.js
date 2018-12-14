@@ -3,6 +3,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import CategoriesScreen from './src/screens/CategoriesScreen';
 import CategoryScreen from './src/screens/CategoryScreen';
 import BookScreen from './src/screens/BookScreen';
+import PlayersScreen from './src/screens/PlayersScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import { colors } from './src/components/_base';
 
@@ -22,10 +23,13 @@ export default createStackNavigator (
     },
     Book: {
       screen: BookScreen
+    },
+    Players: {
+      screen: PlayersScreen
     }
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Players',
     navigationOptions: {
       headerStyle: {
         backgroundColor: colors.primary
